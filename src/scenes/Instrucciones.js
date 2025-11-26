@@ -4,10 +4,58 @@ export default class Instrucciones extends Phaser.Scene {
     }
     preload() { }
     create() {
-        this.add.text(window.innerWidth / 2, window.innerHeight / 2, "Instrucciones", {
+        this.estrellas = []
+        for (let i = 0; i < 50; i++) {
+            const x = Phaser.Math.Between(0, 800)
+            const y = Phaser.Math.Between(0, 600)
+            let estrella = this.add.image(x, y, 'estrellas')
+            const scale = Phaser.Math.FloatBetween(0.2, 1)
+            estrella.setScale(scale)
+            estrella.velocidad = Phaser.Math.FloatBetween(20, 120)
+
+            this.estrellas.push(estrella)
+        }
+        this.fondo=this.add.rectangle(400,370,700,460,0xff0000,0.7)
+        const instrucciones=
+        `
+-Usa las flechas de direccion para mover a tu personaje y conseguir todas las tuercas para poder pasar al siguiente nivel.
+
+-Pero ten cuidado con los cubos de hielo, no querras quedarte congelado
+        `
+        const style={
+            color:"#ffffff",
+            fontSize:24,
+            lineSpacing:12,
+            wordWrap:{
+                width:400,
+                use:true
+            },
+            align:"left"
+        }
+        this.add.text(400,350,instrucciones,style).setOrigin(0.5)
+
+        this.title = this.add.text(400, 60, "Instrucciones", {
             fontSize: "64px",
             fill: "#efefef"
         }).setOrigin(0.5)
+        this.tweens.add({
+            targets: this.title,
+            y: 80,
+            duration: 1500,
+            yoyo: true,
+            repeat: -1
+        })
+        
     }
-    update() { }
+    
+    update(time,delta){
+    const width=this.sys.game.config.width
+    this.estrellas.forEach((star)=>{
+        star.x+=star.velocidad*(delta/1000)
+      if(star.x>width){
+        star.x= -10
+      }
+    })
+
+  }
 }

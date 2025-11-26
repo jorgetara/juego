@@ -4,6 +4,7 @@ import Portada from './scenes/Portada';
 import Game from './scenes/Game';
 import GameOver from './scenes/GameOver';
 import Instrucciones from './scenes/Instrucciones';
+import Preload from './scenes/Preload';
 const config = {
   type: Phaser.AUTO,
   backgroundColor: "#333",
@@ -12,11 +13,11 @@ const config = {
   physics: {
     default: "arcade",
     arcade: {
-      gravity: { y: 300 },
+      gravity: { y: 0},
       debug: false
     }
   },
-  scene: [Portada,Game,GameOver,Instrucciones] // Aquí registras la escena
+  scene: [Preload,Portada,Game,GameOver,Instrucciones] // Aquí registras la escena
 
 }
 const game = new Phaser.Game(config);
