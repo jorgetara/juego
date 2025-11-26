@@ -8,11 +8,13 @@ export default class Portada extends Phaser.Scene {
 
     }
     create() {
+        const gameWidth = this.game.config.width;
+        const gameHeight = this.game.config.height;
 
         this.estrellas = []
         for (let i = 0; i < 50; i++) {
-            const x = Phaser.Math.Between(0, 800)
-            const y = Phaser.Math.Between(0, 600)
+            const x = Phaser.Math.Between(0, gameWidth)
+            const y = Phaser.Math.Between(0, gameHeight)
             let estrella = this.add.image(x, y, 'estrellas')
             const scale = Phaser.Math.FloatBetween(0.2, 1)
             estrella.setScale(scale)
@@ -31,21 +33,21 @@ export default class Portada extends Phaser.Scene {
             yoyo: true,
             repeat: -1
         })
-        
-        this.meteo=this.add.image(780,10,'meteorito')
+
+        this.meteo = this.add.image(780, 10, 'meteorito')
         this.tweens.add({
             targets: this.meteo,
-            x:10,
-            y:590,
+            x: 10,
+            y: 590,
             duration: 5000,
             repeat: -1
         })
-        this.add.image(400,210,'robot').setScale(0.8)
-        
+        this.add.image(400, 210, 'robot').setScale(0.8)
+
 
         this.createUIButton(400, 300, "Start", () => this.scene.start("Game"))
         this.createUIButton(400, 400, "Instrucciones", () => this.scene.start("Instrucciones"))
-        
+
 
     }
     createUIButton(x, y, label, callback) {
@@ -66,14 +68,14 @@ export default class Portada extends Phaser.Scene {
             callback();
         })
     }
-    update(time,delta){
-    const width=this.sys.game.config.width
-    this.estrellas.forEach((star)=>{
-        star.x+=star.velocidad*(delta/1000)
-      if(star.x>width){
-        star.x= -10
-      }
-    })
+    update(time, delta) {
+        const width = this.sys.game.config.width
+        this.estrellas.forEach((star) => {
+            star.x += star.velocidad * (delta / 1000)
+            if (star.x > width) {
+                star.x = -10
+            }
+        })
 
-  }
+    }
 }

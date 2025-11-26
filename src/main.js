@@ -5,6 +5,7 @@ import Game from './scenes/Game';
 import GameOver from './scenes/GameOver';
 import Instrucciones from './scenes/Instrucciones';
 import Preload from './scenes/Preload';
+import Winner from './scenes/Winner';
 const config = {
   type: Phaser.AUTO,
   backgroundColor: "#333",
@@ -17,7 +18,20 @@ const config = {
       debug: false
     }
   },
-  scene: [Preload,Portada,Game,GameOver,Instrucciones] // Aquí registras la escena
+  scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+    min: {
+        width: 300,
+        height: 200
+    },
+    max: {
+        width: 1200,
+        height: 900
+    }
+    },
+
+  scene: [Preload,Portada,Game,GameOver,Instrucciones,Winner] // Aquí registras la escena
 
 }
 const game = new Phaser.Game(config);

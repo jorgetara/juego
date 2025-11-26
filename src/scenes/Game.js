@@ -1,4 +1,4 @@
-
+import { createBtn } from "../utilidades/btn";
 export default class Game extends Phaser.Scene {
     constructor() {
         super("Game")
@@ -82,13 +82,17 @@ export default class Game extends Phaser.Scene {
             this.puntosVidas.setText(`Puntos: ${this.puntos} 🤖x${this.vidas}`)
             if(this.vidas==0){
             this.scene.start('GameOver')
+            
+        }
+        if(this.puntos==37){
+            this.scene.start('Winner')
         }
         }
         this.actualizarTexto()
 
+        createBtn(this,100,this.game.config.height-40,"📖",()=>{this.scene.start("Instrucciones")})
         
     }
-
 
     update() {
         const speed = 160;
