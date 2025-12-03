@@ -4,7 +4,7 @@ export default class Winner extends Phaser.Scene {
     }
     preload() { }
     create() {
-        this.add.text(400, 200, "Congratulations!!!", {
+        this.add.text(400, 200, "Enhorabuena!!!", {
             fontSize: "64px",
             fill: "#efefef"
         }).setOrigin(0.5)
