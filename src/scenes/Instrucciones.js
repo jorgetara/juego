@@ -45,8 +45,30 @@ export default class Instrucciones extends Phaser.Scene {
             yoyo: true,
             repeat: -1
         })
-        
+
+    this.createUIButton(400, 560, "Comenzar juego", () => this.scene.start("Game"))
+
     }
+    createUIButton(x, y, label, callback) {
+        const width = 210;
+        const height = 60;
+        const color = 0xff0000;
+        const bg = this.add.rectangle(x, y, width, height, color, 1).setOrigin(0.5).setStrokeStyle(3, 0xffffff).setInteractive()
+        const text = this.add.text(x, y, label, {
+            fontSize: "24px",
+            fill: "#FFFFFF"
+        }).setOrigin(0.5).setInteractive()
+        bg.on('pointerdown', () => {
+            this.sound.add("click").play()
+            callback();
+        })
+        text.on('pointerdown', () => {
+            this.sound.add("click").play()
+            callback();
+        })
+    }
+        
+    
     
     update(time,delta){
     const width=this.sys.game.config.width

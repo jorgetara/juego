@@ -4,7 +4,7 @@ export default class GameOver extends Phaser.Scene {
     }
     preload() { }
     create() {
-        this.add.text(400, 200, "GameOver", {
+        this.add.text(400, 200, "Game Over", {
             fontSize: "64px",
             fill: "#efefef"
         }).setOrigin(0.5)
